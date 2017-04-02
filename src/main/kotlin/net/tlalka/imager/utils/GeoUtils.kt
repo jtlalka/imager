@@ -1,16 +1,22 @@
 package net.tlalka.imager.utils
 
+import java.lang.Math.atan2
+import java.lang.Math.cos
+import java.lang.Math.pow
+import java.lang.Math.sin
+import java.lang.Math.toDegrees
+import java.lang.Math.toRadians
+
 object GeoUtils {
 
     val earthRadiusInKm = 6371.0
 
     fun distanceInKm(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val dLat = Math.toRadians(lat2 - lat1)
-        val dLng = Math.toRadians(lon2 - lon1)
+        val dLat = toRadians(lat2 - lat1)
+        val dLng = toRadians(lon2 - lon1)
 
-        val a = Math.pow(Math.sin(dLat / 2.0), 2.0) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.pow(Math.sin(dLng / 2.0), 2.0)
-
-        val c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1.0 - a))
+        val a = pow(sin(dLat / 2.0), 2.0) + cos(toRadians(lat1)) * cos(toRadians(lat2)) * pow(sin(dLng / 2.0), 2.0)
+        val c = 2.0 * atan2(Math.sqrt(a), Math.sqrt(1.0 - a))
 
         return earthRadiusInKm * c
     }
@@ -20,17 +26,17 @@ object GeoUtils {
     }
 
     fun bearingInRad(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val rLat1 = Math.toRadians(lat1)
-        val rLat2 = Math.toRadians(lat2)
-        val longDiff = Math.toRadians(lon2 - lon1)
+        val rLat1 = toRadians(lat1)
+        val rLat2 = toRadians(lat2)
+        val longDiff = toRadians(lon2 - lon1)
 
-        val y = Math.sin(longDiff) * Math.cos(rLat2)
-        val x = Math.cos(rLat1) * Math.sin(rLat2) - Math.sin(rLat1) * Math.cos(rLat2) * Math.cos(longDiff)
+        val y = sin(longDiff) * cos(rLat2)
+        val x = cos(rLat1) * sin(rLat2) - sin(rLat1) * cos(rLat2) * cos(longDiff)
 
-        return Math.atan2(y, x)
+        return atan2(y, x)
     }
 
     fun bearingInDeg(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        return (Math.toDegrees(bearingInRad(lat1, lon1, lat2, lon2)) + 360) % 360
+        return (toDegrees(bearingInRad(lat1, lon1, lat2, lon2)) + 360) % 360
     }
 }

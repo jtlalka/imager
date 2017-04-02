@@ -3,14 +3,13 @@ package net.tlalka.imager.core
 import net.tlalka.imager.data.GeoImage
 import net.tlalka.imager.utils.GeoUtils
 
-object GeoCalculator {
+class GeoCalculator {
 
-    fun calculate(i1: GeoImage, i2: GeoImage): GeoImage {
-        val d = GeoUtils.distanceInM(i1.latitude, i1.longitude, i2.latitude, i2.longitude)
-        val e = GeoUtils.bearingInDeg(i1.latitude, i1.longitude, i2.latitude, i2.longitude)
+    fun calculate(i1: GeoImage, i2: GeoImage) {
+        val distance = GeoUtils.distanceInM(i1.latitude, i1.longitude, i2.latitude, i2.longitude)
+        val direction = GeoUtils.bearingInDeg(i1.latitude, i1.longitude, i2.latitude, i2.longitude)
 
-        i2.setImageVector(d, e, CardinalType[e].name)
-        return i2
+        i2.setImageVector(distance, direction, CardinalType[direction].name)
     }
 
     private enum class CardinalType constructor(private val degrees: Int) {

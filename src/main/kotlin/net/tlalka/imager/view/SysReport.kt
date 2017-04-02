@@ -4,6 +4,12 @@ import net.tlalka.imager.data.GeoImage
 
 class SysReport : ReportApi {
 
+    companion object {
+        private val HEADER = "\n\nDIRECTORY: %s\n"
+        private val FORMAT = "\n%s\t\t\tV(dist): %8.2f\t\t V(cord): %6.0f  ( %s )"
+        private val FOOTER = "\n\nDONE.\n"
+    }
+
     override fun header(header: String) {
         print(HEADER, header)
     }
@@ -18,12 +24,5 @@ class SysReport : ReportApi {
 
     private fun print(message: String, vararg objects: Any) {
         System.out.printf(message, *objects)
-    }
-
-    companion object {
-
-        private val HEADER = "\n\nDIRECTORY: %s\n"
-        private val FORMAT = "\n%s\t\t\tV(dist): %8.2f\t\t V(cord): %6.0f  ( %s )"
-        private val FOOTER = "\n\nDONE.\n"
     }
 }
