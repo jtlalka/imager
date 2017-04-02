@@ -6,7 +6,7 @@ class GeoImage(val file: File, val latitude: Double, val longitude: Double) {
 
     var distance = 0.0
     var direction = 0.0
-    var cardinal = ""
+    var cardinal = " "
 
     fun setImageVector(distance: Double, direction: Double, cardinal: String) {
         this.distance = distance

@@ -6,7 +6,7 @@ class SysReport : ReportApi {
 
     companion object {
         private val HEADER = "\n\nDIRECTORY: %s\n"
-        private val FORMAT = "\n%s\t\t\tV(dist): %8.2f\t\t V(cord): %6.0f  ( %s )"
+        private val FORMAT = "\n%s\t\t\t Dist: %8.2f\t\t Cord: %6.0f  ( %s )"
         private val FOOTER = "\n\nDONE.\n"
     }
 

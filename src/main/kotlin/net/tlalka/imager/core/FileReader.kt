@@ -9,7 +9,7 @@ class FileReader {
     fun getImages(directory: String): Observable<File> {
         return Observable
                 .fromArray(*getFileListFromDirectory(directory))
-                .filter { this.isImageFile(it) }
+                .filter { isImageFile(it) }
     }
 
     private fun getFileListFromDirectory(path: String): Array<File> {
