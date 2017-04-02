@@ -1,0 +1,28 @@
+# Intellij IDE
+.idea/
+*.iml
+
+# Ecpipse IDE
+.settings/
+.project
+.classpath
+
+# NetBeans IDE
+nbproject/
+
+# Gradle
+/**/build/
+.gradle/
+
+# Maven
+/**/target/
+
+# Windows OS
+Thumbs.db
+Desktop.ini
+
+# Mac OS
+.DS_Store
+
+# Linux OS
+*~
