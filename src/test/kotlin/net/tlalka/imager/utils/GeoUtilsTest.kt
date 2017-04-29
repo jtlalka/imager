@@ -13,8 +13,8 @@ class GeoUtilsTest {
     fun validateDistanceForSameLocation() {
 
         // given
-        val image1 = GeoImage(File("."), 55.0, 22.1)
-        val image2 = GeoImage(File("."), 55.0, 22.1)
+        val image1 = GeoImage(File("."), 55.0, 22.1, 1)
+        val image2 = GeoImage(File("."), 55.0, 22.1, 1)
 
         // when
         val result = GeoUtils.distanceInKm(image1.latitude, image1.longitude, image2.latitude, image2.longitude)
@@ -27,8 +27,8 @@ class GeoUtilsTest {
     fun validateDistanceForDifferentDirections() {
 
         // given
-        val image1 = GeoImage(File("."), 52.2297, 21.0122)
-        val image2 = GeoImage(File("."), 35.6895, 139.6917)
+        val image1 = GeoImage(File("."), 52.2297, 21.0122, 1)
+        val image2 = GeoImage(File("."), 35.6895, 139.6917, 1)
 
         // when
         val result = GeoUtils.distanceInKm(image1.latitude, image1.longitude, image2.latitude, image2.longitude)
@@ -41,8 +41,8 @@ class GeoUtilsTest {
     fun validateDistanceForShortDirections() {
 
         // given
-        val image1 = GeoImage(File("."), 52.2297, 21.0122)
-        val image2 = GeoImage(File("."), 52.2296, 21.0122)
+        val image1 = GeoImage(File("."), 52.2297, 21.0122, 1)
+        val image2 = GeoImage(File("."), 52.2296, 21.0122, 1)
 
         // when
         val result = GeoUtils.distanceInM(image1.latitude, image1.longitude, image2.latitude, image2.longitude)
@@ -55,8 +55,8 @@ class GeoUtilsTest {
     fun validateBearingInDegrees() {
 
         // given
-        val image1 = GeoImage(File("."), 52.2297, 21.0122)
-        val image2 = GeoImage(File("."), 52.2296, 21.0122)
+        val image1 = GeoImage(File("."), 52.2297, 21.0122, 1)
+        val image2 = GeoImage(File("."), 52.2296, 21.0122, 1)
 
         // when
         val result = GeoUtils.bearingInDeg(image1.latitude, image1.longitude, image2.latitude, image2.longitude)
@@ -69,8 +69,8 @@ class GeoUtilsTest {
     fun validateBearingInRadians() {
 
         // given
-        val image1 = GeoImage(File("."), 52.2297, 21.0122)
-        val image2 = GeoImage(File("."), 52.2296, 21.0122)
+        val image1 = GeoImage(File("."), 52.2297, 21.0122, 1)
+        val image2 = GeoImage(File("."), 52.2296, 21.0122, 1)
 
         // when
         val result = GeoUtils.bearingInRad(image1.latitude, image1.longitude, image2.latitude, image2.longitude)

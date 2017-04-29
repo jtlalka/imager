@@ -7,6 +7,8 @@ import io.reactivex.Observable
 import net.tlalka.imager.data.GeoImage
 import java.io.File
 import java.io.IOException
+import java.nio.file.Files
+import java.nio.file.attribute.BasicFileAttributes
 
 class GeoReader {
 
@@ -35,6 +37,9 @@ class GeoReader {
         val latitude = gpsDirectory.geoLocation.latitude
         val longitude = gpsDirectory.geoLocation.longitude
 
-        return Observable.just(GeoImage(image, latitude, longitude))
+        val attr : BasicFileAttributes = Files.readAttributes(image.toPath(), BasicFileAttributes::class.java)
+        val time = attr.creationTime()
+
+        return Observable.just(GeoImage(image, latitude, longitude, time.toMillis()))
     }
 }

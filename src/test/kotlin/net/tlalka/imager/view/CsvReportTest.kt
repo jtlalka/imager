@@ -25,7 +25,7 @@ class CsvReportTest {
     fun shouldWriteImageData() {
 
         // when
-        csvReport.write(GeoImage(File("."), 12.0, 24.0))
+        csvReport.write(GeoImage(File("."), 12.0, 24.0, 1))
 
         // then
         verify(writer, times(1)).println(ArgumentMatchers.anyString())

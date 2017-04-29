@@ -2,7 +2,7 @@ package net.tlalka.imager.view
 
 import net.tlalka.imager.data.GeoImage
 
-class SysReport : ReportApi {
+class LogReport : ReportApi {
 
     companion object {
         val HEADER = "\n\nDIRECTORY: %s\n"

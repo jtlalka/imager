@@ -2,7 +2,7 @@ package net.tlalka.imager.data
 
 import java.io.File
 
-class GeoImage(val file: File, val latitude: Double, val longitude: Double) {
+class GeoImage(val file: File, val latitude: Double, val longitude: Double, val time: Long) {
 
     var distance = 0.0
     var direction = 0.0

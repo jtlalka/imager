@@ -7,7 +7,7 @@ import net.tlalka.imager.core.GeoReader
 import net.tlalka.imager.utils.RxUtils.comp
 import net.tlalka.imager.view.CsvReport
 import net.tlalka.imager.view.ReportFacade
-import net.tlalka.imager.view.SysReport
+import net.tlalka.imager.view.LogReport
 
 object Imager {
 
@@ -16,7 +16,7 @@ object Imager {
         val fileReader = FileReader()
         val geoReader = GeoReader()
         val geoCalculator = GeoCalculator()
-        val report = ReportFacade(SysReport(), CsvReport())
+        val report = ReportFacade(LogReport(), CsvReport())
 
         Observable
                 .fromArray(*args)
