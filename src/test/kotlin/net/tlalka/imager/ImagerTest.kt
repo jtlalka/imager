@@ -11,7 +11,7 @@ class ImagerTest {
 
     @Test
     fun startApplicationsArgs() {
-        Imager.main(getArgs("/tmp/"))
+        Imager.main(getArgs("/tmp/test-img/"))
     }
 
     private fun getArgs(vararg args: String): Array<String> {

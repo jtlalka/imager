@@ -6,8 +6,8 @@ import net.tlalka.imager.core.GeoCalculator
 import net.tlalka.imager.core.GeoReader
 import net.tlalka.imager.utils.RxUtils.comp
 import net.tlalka.imager.view.CsvReport
-import net.tlalka.imager.view.ReportFacade
 import net.tlalka.imager.view.LogReport
+import net.tlalka.imager.view.ReportFacade
 
 object Imager {
 
@@ -22,7 +22,12 @@ object Imager {
                 .fromArray(*args)
                 .doOnNext { report.header(it) }
                 .flatMap { fileReader.getImages(it) }
-                .flatMap { geoReader.getGeoImage(it) }
+                .flatMap {
+                    geoReader.getGeoImage(it)
+                        .toObservable()
+                        .doOnError { logger(it) }
+                        .onErrorResumeNext(Observable.empty())
+                }
                 .comp { i1, i2 -> geoCalculator.calculate(i1, i2) }
 
                 .subscribe(
@@ -33,6 +38,6 @@ object Imager {
     }
 
     private fun logger(throwable: Throwable) {
-        println("Program error: " + throwable)
+        println("\nProgram error: " + throwable)
     }
 }

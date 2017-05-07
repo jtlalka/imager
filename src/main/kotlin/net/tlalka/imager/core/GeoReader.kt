@@ -1,46 +1,45 @@
 package net.tlalka.imager.core
 
 import com.drew.imaging.ImageMetadataReader
-import com.drew.imaging.ImageProcessingException
 import com.drew.metadata.exif.GpsDirectory
-import io.reactivex.Observable
+import io.reactivex.Single
 import net.tlalka.imager.data.GeoImage
 import java.io.File
-import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.attribute.BasicFileAttributes
 import java.nio.file.attribute.FileTime
 
 class GeoReader {
 
-    fun getGeoImage(image: File): Observable<GeoImage> {
-        return Observable
+    fun getGeoImage(image: File): Single<GeoImage> {
+        return Single
                 .just(image)
                 .flatMap { getGpsDirectory(image) }
                 .flatMap { getImageValue(image, it) }
     }
 
-    private fun getGpsDirectory(image: File): Observable<GpsDirectory> {
-        try {
-            val metadata = ImageMetadataReader.readMetadata(image)
-            val gpsDirectories = metadata.getDirectoriesOfType(GpsDirectory::class.java)
+    private fun getGpsDirectory(image: File): Single<GpsDirectory> {
+        return Single.create { emitter ->
+            run {
+                val metadata = ImageMetadataReader.readMetadata(image)
+                val gpsDirectories = metadata.getDirectoriesOfType(GpsDirectory::class.java)
 
-            return Observable.fromIterable(gpsDirectories)
-
-        } catch (e: ImageProcessingException) {
-            return Observable.empty()
-        } catch (e: IOException) {
-            return Observable.empty()
+                emitter.onSuccess(gpsDirectories.first())
+            }
         }
     }
 
-    private fun getImageValue(image: File, gpsDirectory: GpsDirectory): Observable<GeoImage> {
-        val latitude = gpsDirectory.geoLocation.latitude
-        val longitude = gpsDirectory.geoLocation.longitude
+    private fun getImageValue(image: File, gpsDirectory: GpsDirectory): Single<GeoImage> {
+        return Single.create { emitter ->
+            run {
+                val latitude = gpsDirectory.geoLocation.latitude
+                val longitude = gpsDirectory.geoLocation.longitude
 
-        val attr : BasicFileAttributes = Files.readAttributes(image.toPath(), BasicFileAttributes::class.java)
-        val time = attr.creationTime() ?: FileTime.fromMillis(0)
+                val attr: BasicFileAttributes = Files.readAttributes(image.toPath(), BasicFileAttributes::class.java)
+                val time = attr.creationTime() ?: FileTime.fromMillis(0)
 
-        return Observable.just(GeoImage(image, latitude, longitude, time.toMillis()))
+                emitter.onSuccess(GeoImage(image, latitude, longitude, time.toMillis()))
+            }
+        }
     }
 }
