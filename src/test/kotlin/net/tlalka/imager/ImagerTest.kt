@@ -1,6 +1,6 @@
 package net.tlalka.imager
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class ImagerTest {
 

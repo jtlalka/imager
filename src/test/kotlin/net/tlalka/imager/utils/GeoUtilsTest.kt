@@ -1,8 +1,8 @@
 package net.tlalka.imager.utils
 
 import net.tlalka.imager.data.GeoImage
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import java.io.File
 
 class GeoUtilsTest {

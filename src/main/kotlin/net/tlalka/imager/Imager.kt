@@ -28,8 +28,9 @@ object Imager {
                         .doOnError { logger(it) }
                         .onErrorResumeNext(Observable.empty())
                 }
-                .comp { i1, i2 -> geoCalculator.calculate(i1, i2) }
-
+                .comp {
+                    i1, i2 -> geoCalculator.calculate(i1, i2)
+                }
                 .subscribe(
                         { report.write(it) },
                         { logger(it) },

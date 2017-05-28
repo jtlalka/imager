@@ -4,7 +4,7 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import net.tlalka.imager.utils.RxUtils.comp
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class RxUtilsTest {
 
