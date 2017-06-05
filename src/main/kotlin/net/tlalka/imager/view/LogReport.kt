@@ -18,7 +18,7 @@ class LogReport : ReportApi {
         print(FORMAT, image.file.name, image.distance, image.direction, image.cardinal)
     }
 
-    override fun save() {
+    override fun footer() {
         print(FOOTER)
     }
 

@@ -14,7 +14,7 @@ class ReportFacade(private val reports: List<ReportApi>) : ReportApi {
         reports.forEach { it.write(image) }
     }
 
-    override fun save() {
-        reports.forEach { it.save() }
+    override fun footer() {
+        reports.forEach { it.footer() }
     }
 }

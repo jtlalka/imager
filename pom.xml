@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <kotlin.version>1.1.2-2</kotlin.version>
-        <rxjava.version>2.0.7</rxjava.version>
+        <rxjava.version>2.1.0</rxjava.version>
         <metadata.version>2.10.1</metadata.version>
 
         <junit.platform.version>1.0.0-M4</junit.platform.version>
@@ -20,7 +20,7 @@
         <junit.vintage.version>4.12.0-M4</junit.vintage.version>
 
         <spek.version>1.1.2</spek.version>
-        <mockito.version>2.7.18</mockito.version>
+        <mockito.version>2.8.9</mockito.version>
     </properties>
 
     <dependencies>
@@ -82,7 +82,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- kotlin test -->
+        <!-- Kotlin reflect -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>

@@ -8,5 +8,5 @@ interface ReportApi {
 
     fun write(image: GeoImage)
 
-    fun save()
+    fun footer()
 }

@@ -33,7 +33,7 @@ class CsvReport : ReportApi {
                 image.distance.toCsv(), image.direction.toCsv(), image.cardinal)
     }
 
-    override fun save() {
+    override fun footer() {
         writer?.flush()
         writer?.close()
     }

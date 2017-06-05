@@ -3,7 +3,7 @@ package net.tlalka.imager.view
 import net.tlalka.imager.data.GeoImage
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.times
@@ -28,14 +28,14 @@ class CsvReportTest {
         csvReport.write(GeoImage(File("."), 12.0, 24.0, 1))
 
         // then
-        verify(writer, times(1)).println(ArgumentMatchers.anyString())
+        verify(writer, times(1)).println(anyString())
     }
 
     @Test
-    fun shouldSaveDataFile() {
+    fun shouldWriteFooter() {
 
         // when
-        csvReport.save()
+        csvReport.footer()
 
         // then
         verify(writer, times(1)).flush()

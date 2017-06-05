@@ -20,22 +20,16 @@ object Imager {
 
         Observable
                 .fromArray(*args)
-                .doOnNext { report.header(it) }
-                .flatMap { fileReader.getImages(it) }
+                .doOnNext(report::header)
+                .flatMap(fileReader::getImages)
                 .flatMap {
                     geoReader.getGeoImage(it)
                         .toObservable()
-                        .doOnError { logger(it) }
+                        .doOnError(this::logger)
                         .onErrorResumeNext(Observable.empty())
                 }
-                .comp {
-                    i1, i2 -> geoCalculator.calculate(i1, i2)
-                }
-                .subscribe(
-                        { report.write(it) },
-                        { logger(it) },
-                        { report.save() }
-                )
+                .comp(geoCalculator::calculate)
+                .subscribe(report::write, this::logger, report::footer)
     }
 
     private fun logger(throwable: Throwable) {
